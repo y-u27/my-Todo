@@ -1,0 +1,73 @@
+body {
+  background-color: white;
+}
+
+.title {
+  background-color: skyblue;
+  text-align: center;
+}
+
+.input-area {
+  text-align: center;  
+}
+
+input {
+  width: 500px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+button {
+  width: 80px;
+  height: 35px;
+  background-color: #CCFFFF;
+  border-radius: 10px;
+  border: 1px solid #00FFFF;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #77F9C3;
+  color: #FF9872;
+  cursor: pointer;
+}
+
+li {
+  font-size: 16px;
+  text-align: center;
+  list-style: none;
+}
+
+.todoTitle {
+  display: inline;
+}
+
+.status-area {
+  display: flex;
+  justify-content: center;
+}
+
+.in-progress {
+  width: 30%;
+  min-height: 200px;
+  background-color: #FFFF99;
+  border: none;
+  border-radius: 15px;
+  margin-right: 10px;
+}
+
+.progress-letter {
+  text-align: center;
+}
+
+.complete {
+  width: 30%;
+  min-height: 200px;
+  background-color: #FFAD90;
+  border: none;
+  border-radius: 15px;
+}
+
+.complete-letter {
+  text-align: center;
+}
