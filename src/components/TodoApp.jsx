@@ -48,6 +48,7 @@ const TodoApp = () => {
         <h1 className="title">YourTodo</h1>
       </div>
       <div className="input-area">
+        //valueを設定する↓
         <input placeholder="Todo入力" onChange={handleOnChage} />
         <button onClick={todoAddClick}>Add</button>
         <div>
