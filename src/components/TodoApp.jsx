@@ -1,46 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const TodoApp = () => {
-  const [titles, setTitles] = useState([])
-  const [inputTodo, setInputTodo] = useState('')
-  const [inProgress, setInProgress] = useState([])
-  const [complete, setComplete] = useState([])
+  const [titles, setTitles] = useState([]);
+  const [inputTodo, setInputTodo] = useState('');
+  const [inProgress, setInProgress] = useState([]);
+  const [complete, setComplete] = useState([]);
 
   // 入力された値を保持する関数
   const handleOnChange = (event) => {
-    setInputTodo(event.target.value)
-  }
+    setInputTodo(event.target.value);
+  };
 
   // 追加ボタン機能
   const todoAddClick = () => {
     if (inputTodo === '') return;
-    const newTitles = [...titles, inputTodo]
-      setTitles(newTitles)
-      setInputTodo('')
-  }
+    const newTitles = [...titles, inputTodo];
+    setTitles(newTitles);
+    setInputTodo('');
+  };
 
   // 削除ボタン機能
   const todoDeleteClick = (index) => {
-    const deleteTodo = [...titles]
-    deleteTodo.splice(index, 1)
-    setTitles(deleteTodo)
-  }
+    const deleteTodo = [...titles];
+    deleteTodo.splice(index, 1);
+    setTitles(deleteTodo);
+  };
 
   // 進行中ボタン機能
   const todoInProgress = (index) => {
-    const taskToMove = titles[index]
-    const newTitles = [...titles.slice(0, index), ...titles.slice(index + 1)]
-      setInProgress([...inProgress, taskToMove])
-      setTitles(newTitles)
-    }
+    const taskToMove = titles[index];
+    const newTitles = [...titles.slice(0, index), ...titles.slice(index + 1)];
+    setInProgress([...inProgress, taskToMove]);
+    setTitles(newTitles);
+  };
 
   // 完了ボタン機能
   const completeTodo = (index) => {
-    const taskToMove = titles[index]
-    const newTitles = [...titles.slice(0, index), ...titles.slice(index + 1)]
-      setComplete([...complete, taskToMove])
-      setTitles(newTitles)
-  }
+    const taskToMove = titles[index];
+    const newTitles = [...titles.slice(0, index), ...titles.slice(index + 1)];
+    setComplete([...complete, taskToMove]);
+    setTitles(newTitles);
+  };
 
   return (
     <>
@@ -60,7 +60,7 @@ const TodoApp = () => {
                     <button onClick={() => completeTodo(index)} >完了</button>
                     <button onClick={() => todoDeleteClick(index)} >削除</button>
                   </div>
-                )
+                );
               })}
           </ul>
         </div>
@@ -69,22 +69,22 @@ const TodoApp = () => {
         <div className="in-progress">
           <p className="progress-letter">進行中</p>
           <ul>
-            {inProgress.map((task, index) => {
+            {inProgress.map((task, index) => (
               <li key={index}>{task}</li>
-            })}
+            ))}
           </ul>
         </div>
         <div className="complete">
           <p className="complete-letter">完了</p>
           <ul>
-            {complete.map((task, index) => {
+            {complete.map((task, index) => (
               <li key={index}>{task}</li>
-            })}
+            ))}
           </ul>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default TodoApp
+export default TodoApp;
