@@ -2,21 +2,21 @@ import React, { useState } from 'react'
 
 const TodoApp = () => {
   const [titles, setTitles] = useState([])
-  const [todos, setTodos] = useState('')
-  const [inProgress, setInProgress] = useState('')
-  const [complete, setComplete] = useState('')
+  const [inputTodo, setInputTodo] = useState('')
+  const [inProgress, setInProgress] = useState([])
+  const [complete, setComplete] = useState([])
 
   // 入力された値を保持する関数
-  const handleOnChage = (event) => {
-    setTodos(event.target.value)
+  const handleOnChange = (event) => {
+    setInputTodo(event.target.value)
   }
 
   // 追加ボタン機能
   const todoAddClick = () => {
-    const newTodos = [...titles, todos]
-    if (newTodos === '') {
-      setTitles(newTodos)
-    }
+    if (inputTodo === '') return;
+    const newTitles = [...titles, inputTodo]
+      setTitles(newTitles)
+      setInputTodo('')
   }
 
   // 削除ボタン機能
@@ -30,16 +30,16 @@ const TodoApp = () => {
   const todoInProgress = (index) => {
     const taskToMove = titles[index]
     const newTitles = [...titles.slice(0, index), ...titles.slice(index + 1)]
+      setInProgress([...inProgress, taskToMove])
       setTitles(newTitles)
-      setInProgress(taskToMove)
     }
 
   // 完了ボタン機能
   const completeTodo = (index) => {
     const taskToMove = titles[index]
     const newTitles = [...titles.slice(0, index), ...titles.slice(index + 1)]
-    setComplete(taskToMove)
-    setTitles(newTitles)
+      setComplete([...complete, taskToMove])
+      setTitles(newTitles)
   }
 
   return (
@@ -48,13 +48,13 @@ const TodoApp = () => {
         <h1 className="title">YourTodo</h1>
       </div>
       <div className="input-area">
-        <input placeholder="Todo入力" onChange={handleOnChage} />
+        <input placeholder="Todo入力" value={inputTodo} onChange={handleOnChange} />
         <button onClick={todoAddClick}>Add</button>
         <div>
           <ul>       
               {titles.map((element, index) => {
                 return (
-                  <div key={element}>
+                  <div key={index}>
                     <li className="todoTitle">{element}</li>
                     <button onClick={() => todoInProgress(index)} >進行中</button>
                     <button onClick={() => completeTodo(index)} >完了</button>
@@ -68,11 +68,19 @@ const TodoApp = () => {
       <div className="status-area">
         <div className="in-progress">
           <p className="progress-letter">進行中</p>
-          <p>{inProgress}</p>
+          <ul>
+            {inProgress.map((task, index) => {
+              <li key={index}>{task}</li>
+            })}
+          </ul>
         </div>
         <div className="complete">
           <p className="complete-letter">完了</p>
-          <p>{complete}</p>
+          <ul>
+            {complete.map((task, index) => {
+              <li key={index}>{task}</li>
+            })}
+          </ul>
         </div>
       </div>
     </>
