@@ -3,13 +3,20 @@ import React, { useState } from 'react';
 const TodoApp = () => {
   const [titles, setTitles] = useState([]);
   const [inputTodo, setInputTodo] = useState('');
+  const [detail, setDetail] = useState([])
+  // const [id, setId] = useState(1)
   const [inProgress, setInProgress] = useState([]);
   const [complete, setComplete] = useState([]);
 
-  // 入力された値を保持する関数
+  // 入力された値を保持する関数(Todoタイトル)
   const handleOnChange = (event) => {
     setInputTodo(event.target.value);
   };
+
+  // 入力された値を保持する関数(Todo詳細)
+  const handleDetail = (event) => {
+    setDetail(event.target.value)
+  }
 
   // 追加ボタン機能
   const todoAddClick = () => {
@@ -48,20 +55,32 @@ const TodoApp = () => {
         <h1 className="title">YourTodo</h1>
       </div>
       <div className="input-area">
-        <input placeholder="Todo入力" value={inputTodo} onChange={handleOnChange} />
+        <div className="todoTitle">Todoのタイトル:</div>
+        <input placeholder="例) 読書など" value={inputTodo} onChange={handleOnChange} />
+        <div className="todoDetail">Todoの詳細:</div>
+        <input placeholder="例) 本のタイトルなど" value={detail} onChange={handleDetail} />
         <button onClick={todoAddClick}>Add</button>
         <div>
           <ul>       
-              {titles.map((element, index) => {
-                return (
-                  <div key={index}>
-                    <li className="todoTitle">{element}</li>
-                    <button onClick={() => todoInProgress(index)} >進行中</button>
-                    <button onClick={() => completeTodo(index)} >完了</button>
-                    <button onClick={() => todoDeleteClick(index)} >削除</button>
-                  </div>
-                );
-              })}
+            {titles.map((element, index) => {
+              return (
+                <div key={index}>
+                  <li className="todoTitle">{element}</li>
+                  <button onClick={() => todoInProgress(index)} >進行中</button>
+                  <button onClick={() => completeTodo(index)} >完了</button>
+                  <button onClick={() => todoDeleteClick(index)} >削除</button>
+                </div>
+              );
+            })}
+          </ul>
+          <ul>
+            {detail.map((elements) => {
+              return (
+                <div key={elements}>
+                  <li>{elements}</li>
+                </div>
+              );
+            })}
           </ul>
         </div>
       </div>
