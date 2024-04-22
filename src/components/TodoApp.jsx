@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 
 const TodoApp = () => {
+  // ↓タイトルのstate
   const [titles, setTitles] = useState([]);
+  // ↓リストのstate?
   const [inputTodo, setInputTodo] = useState('');
+  // ↓詳細のstate
   const [detail, setDetail] = useState([])
+  // ↓idのstate
   // const [id, setId] = useState(1)
+  // ↓進行中のstate
   const [inProgress, setInProgress] = useState([]);
+  // ↓完了のstate
   const [complete, setComplete] = useState([]);
 
   // 入力された値を保持する関数(Todoタイトル)
@@ -21,9 +27,10 @@ const TodoApp = () => {
   // 追加ボタン機能
   const todoAddClick = () => {
     if (inputTodo === '') return;
-    const newTitles = [...titles, inputTodo];
-    setTitles(newTitles);
-    setInputTodo('');
+    const newTitles = [...titles, inputTodo, detail];
+    setTitles(newTitles)
+    setInputTodo('')
+    setDetail('')
   };
 
   // 削除ボタン機能
@@ -62,22 +69,13 @@ const TodoApp = () => {
         <button onClick={todoAddClick}>Add</button>
         <div>
           <ul>       
-            {titles.map((element, index) => {
-              return (
-                <div key={index}>
-                  <li className="todoTitle">{element}</li>
-                  <button onClick={() => todoInProgress(index)} >進行中</button>
-                  <button onClick={() => completeTodo(index)} >完了</button>
-                  <button onClick={() => todoDeleteClick(index)} >削除</button>
-                </div>
-              );
-            })}
-          </ul>
-          <ul>
-            {detail.map((elements, index) => (
-                <div key={index}>
-                  <li>{elements}</li>
-                </div>
+            {titles.map((element, index) => (
+              <div key={index}>
+                <li className="todoTitle">{element}</li>
+                <button onClick={() => todoInProgress(index)} >進行中</button>
+                <button onClick={() => completeTodo(index)} >完了</button>
+                <button onClick={() => todoDeleteClick(index)} >削除</button>
+              </div>
             ))}
           </ul>
         </div>
@@ -101,7 +99,7 @@ const TodoApp = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default TodoApp;
+export default TodoApp
