@@ -74,13 +74,11 @@ const TodoApp = () => {
             })}
           </ul>
           <ul>
-            {detail.map((elements) => {
-              return (
-                <div key={elements}>
+            {detail.map((elements, index) => (
+                <div key={index}>
                   <li>{elements}</li>
                 </div>
-              );
-            })}
+            ))}
           </ul>
         </div>
       </div>
