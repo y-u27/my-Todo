@@ -4,11 +4,11 @@ const TodoApp = () => {
   // ↓タイトルのstate
   const [titles, setTitles] = useState([]);
   // ↓リストのstate?
-  const [inputTodo, setInputTodo] = useState('');
+  const [inputTodo, setInputTodo] = useState([]);
   // ↓詳細のstate
   const [detail, setDetail] = useState([])
   // ↓idのstate
-  // const [id, setId] = useState(1)
+  const [id, setId] = useState(1)
   // ↓進行中のstate
   const [inProgress, setInProgress] = useState([]);
   // ↓完了のstate
@@ -27,10 +27,11 @@ const TodoApp = () => {
   // 追加ボタン機能
   const todoAddClick = () => {
     if (inputTodo === '') return;
-    const newTitles = [...titles, inputTodo, detail];
+    const newTitles = [...titles, inputTodo, detail, id]
     setTitles(newTitles)
     setInputTodo('')
     setDetail('')
+    setId(id + 1)
   };
 
   // 削除ボタン機能
