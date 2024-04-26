@@ -26,12 +26,20 @@ const TodoApp = () => {
 
   // 追加ボタン機能
   const todoAddClick = () => {
-    if (inputTodo === '') return;
+    if (inputTodo === '') return
+    setInputTodo([
+      ...inputTodo,
+      {
+        id: id,
+        title: titles,
+        detail: detail
+      }
+    ])
     const newTitles = [...titles, inputTodo, detail, id]
     setTitles(newTitles)
     setInputTodo('')
     setDetail('')
-    setId(id + 1)
+    setId(id)
   };
 
   // 削除ボタン機能
@@ -70,14 +78,16 @@ const TodoApp = () => {
         <button onClick={todoAddClick}>Add</button>
         <div>
           <ul>       
-            {titles.map((element, index) => (
-              <div key={index}>
-                <li className="todoTitle">{element}</li>
-                <button onClick={() => todoInProgress(index)} >進行中</button>
-                <button onClick={() => completeTodo(index)} >完了</button>
-                <button onClick={() => todoDeleteClick(index)} >削除</button>
-              </div>
-            ))}
+            {titles.map((element, index) => {
+              return (
+                <div key={index}>
+                  <li className="todoTitle">{element}</li>
+                  <button onClick={() => todoInProgress(index)}>進行中</button>
+                  <button onClick={() => completeTodo(index)}>完了</button>
+                  <button onClick={() => todoDeleteClick(index)}>削除</button>
+                </div>
+              )
+            })}
           </ul>
         </div>
       </div>
