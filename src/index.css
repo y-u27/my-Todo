@@ -9,14 +9,37 @@ body {
 }
 
 .input-area {
-  text-align: center;  
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  position: relative;
 }
 
-.todoTitle .todoDetail {
-  text-align: left;
+.input-area .todoTitle {
+  display: flex;
+  position: fixed;
+  top: 15%;
+  left: 23%;
+}
+
+.input-area .todoDetail {
+  display: flex;
+  position: fixed;
+  left: 25%;
+  bottom: 73%;
+}
+
+.todoTitles {
+  display: flex;
+  position: relative;
+}
+
+.todoElement {
+  display: flex;
+  /* position: absolute;
+  top: 10%;
+  right: 120%; */
 }
 
 input {
