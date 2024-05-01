@@ -10,7 +10,7 @@ const TodoApp = () => {
   // ↓idのstate
   const [id, setId] = useState(1);
   // ↓編集のstate
-  const [todoEdit, setTodoEdit] = useState('')
+  // const [todoEdit, setTodoEdit] = useState('')
   // ↓進行中のstate
   const [inProgress, setInProgress] = useState([]);
   // ↓完了のstate
@@ -47,7 +47,6 @@ const TodoApp = () => {
   }
 
   // 進行中ボタン機能
-  // 追加したい機能→「進行中」エリアに移動後、完了ボタンをクリック→「完了」エリアへ、削除ボタン→Todo削除
   const todoInProgress = (index) => {
     const taskToMove = titles[index];
     const newTitles = [...titles.slice(0, index), ...titles.slice(index + 1)];
@@ -58,9 +57,11 @@ const TodoApp = () => {
   // 「進行中へ」ボタン機能→「完了」エリアに移動後、このボタンをクリックすると「進行中」エリアにタスクが移動するような機能
   // 「完了」エリアに移動した配列のまま移動させたい
   const sendTodoInProgress = (index) => {
-    const newSendInProgressTodo = [...inProgress, inputTodoList[index]];
+    const taskToMove = titles[index];
+    const newSendInProgressTodo = titles(taskToMove);
     setInputTodoList(newSendInProgressTodo);
-  }
+
+  };
 
   // 完了ボタン機能
   const completeTodo = (index) => {
