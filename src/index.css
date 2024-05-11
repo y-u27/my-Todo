@@ -1,5 +1,5 @@
 body {
-  background-color: white;
+  background-color: #F0FFFF;
 }
 
 .title {
@@ -56,6 +56,7 @@ button {
   border-radius: 10px;
   border: 1px solid #00FFFF;
   margin: 5px;
+  box-shadow: 10px 10px 15px -15px;
 }
 
 button:hover {
@@ -86,6 +87,7 @@ li {
   border: none;
   border-radius: 15px;
   margin-right: 10px;
+  box-shadow: 10px 10px 15px -10px;
 }
 
 .progress-letter {
@@ -98,6 +100,7 @@ li {
   background-color: #FFAD90;
   border: none;
   border-radius: 15px;
+  box-shadow: 10px 10px 15px -10px;
 }
 
 .complete-letter {
