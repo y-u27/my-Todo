@@ -56,11 +56,9 @@ const TodoApp = () => {
 
   // 「進行中へ」ボタン機能→「完了」エリアに移動後、このボタンをクリックすると「進行中」エリアにタスクが移動するような機能
   // 「完了」エリアに移動した配列のまま移動させたい
-  const sendTodoInProgress = (index) => {
-    const taskToMove = titles[index];
-    const newSendInProgressTodo = titles(taskToMove);
-    setInputTodoList(newSendInProgressTodo);
-
+  const sendTodoInProgress = (id) => {
+    const newTitles = [...complete]
+    setInProgress(newTitles.filter((newTitles, id) => ))
   };
 
   // 完了ボタン機能
@@ -74,7 +72,7 @@ const TodoApp = () => {
   // 「完了へ」ボタン機能→「進行中」エリアに移動後、このボタンをクリックすると「完了」エリアにタスクが移動するような機能
   // 「進行中」エリアに移動した配列のまま移動させたい
   const sendCompleteTodo = (index) => {
-    const newSendCompleteTodo = [...complete, inputTodoList[index]];
+    const newSendCompleteTodo = [...complete];
     setInputTodoList(newSendCompleteTodo);
   };
 
