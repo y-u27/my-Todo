@@ -18,8 +18,8 @@ body {
 
 .input-area .todoTitle {
   display: flex;
-  position: fixed;
-  top: 15%;
+  position: absolute;
+  top: 14px;
   left: 23%;
 }
 
@@ -37,9 +37,6 @@ body {
 
 .todoElement {
   display: flex;
-  /* position: absolute;
-  top: 10%;
-  right: 120%; */
 }
 
 input {
