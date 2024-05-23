@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const TodoApp = () => {
   // ↓タイトルのstate
   const [titles, setTitles] = useState([]);
   // ↓リストのstate
-  const [inputTodoList, setInputTodoList] = useState('');
+  const [inputTodoList, setInputTodoList] = useState("");
   // ↓詳細のstate
-  const [inputTodoDetail, setInputTodoDetail] = useState('');
+  const [inputTodoDetail, setInputTodoDetail] = useState("");
   // ↓idのstate
   const [id, setId] = useState(1);
   // ↓編集のstate
@@ -24,27 +24,27 @@ const TodoApp = () => {
   // 入力された値を保持する関数(Todo詳細)
   const handleDetail = (event) => {
     setInputTodoDetail(event.target.value);
-  }
+  };
 
   // 追加ボタン機能
   const todoAddClick = () => {
-    if (inputTodoList === '') return
+    if (inputTodoList === "") return;
     // 新しいTodoオブジェクトを作成して配列に追加
     const newTodo = {
       id: id,
       title: inputTodoList,
-      detail: inputTodoDetail
+      detail: inputTodoDetail,
     };
     setTitles([...titles, newTodo]);
-    setInputTodoList('');
-    setInputTodoDetail('');
+    setInputTodoList("");
+    setInputTodoDetail("");
     setId(id + 1);
   };
 
   // 編集ボタン機能
-  const todoEditClick = () => {
-
-  }
+  // 既存のtodoリストを取り除く→splice
+  // 取り除いた後は空配列にする
+  const todoEditClick = () => {};
 
   // 進行中ボタン機能
   const todoInProgress = (index) => {
@@ -57,7 +57,7 @@ const TodoApp = () => {
   // 「進行中へ」ボタン機能→「完了」エリアに移動後、このボタンをクリックすると「進行中」エリアにタスクが移動するような機能
   // 「完了」エリアに移動した配列のまま移動させたい
   const sendTodoInProgress = (id) => {
-    const newTitles = [...complete]
+    const newTitles = [...complete];
     newTitles.splice(id, 1);
 
     const newAddTitles = [...inProgress, complete[id]];
@@ -72,11 +72,11 @@ const TodoApp = () => {
     setComplete([...complete, taskToMove]);
     setTitles(newTitles);
   };
-  
+
   // 「完了へ」ボタン機能→「進行中」エリアに移動後、このボタンをクリックすると「完了」エリアにタスクが移動するような機能
   // 「進行中」エリアに移動した配列のまま移動させたい
   const sendCompleteTodo = (id) => {
-    const newTitles = [...inProgress]
+    const newTitles = [...inProgress];
     newTitles.splice(id, 1);
 
     const newAddTitles = [...complete, inProgress[id]];
@@ -90,7 +90,7 @@ const TodoApp = () => {
     deleteTodo.splice(index, 1);
     setTitles(deleteTodo);
   };
-  
+
   // 削除ボタン機能（進行中エリア）
   const todoDeleteInprogress = (index) => {
     const deleteTodo = [...titles];
@@ -112,12 +112,20 @@ const TodoApp = () => {
       </div>
       <div className="input-area">
         <div className="todoTitle">Todoのタイトル:</div>
-        <input placeholder="例) 読書など" value={inputTodoList} onChange={handleOnChange} />
+        <input
+          placeholder="例) 読書など"
+          value={inputTodoList}
+          onChange={handleOnChange}
+        />
         <div className="todoDetail">Todoの詳細:</div>
-        <input placeholder="例) 本のタイトルなど" value={inputTodoDetail} onChange={handleDetail} />
+        <input
+          placeholder="例) 本のタイトルなど"
+          value={inputTodoDetail}
+          onChange={handleDetail}
+        />
         <button onClick={todoAddClick}>Add</button>
         <div>
-          <ul>       
+          <ul>
             {titles.map((element, index) => {
               return (
                 <div key={index}>
@@ -129,13 +137,17 @@ const TodoApp = () => {
                     </div>
                     <div>
                       <button onClick={() => todoEditClick(index)}>✏️</button>
-                      <button onClick={() => todoInProgress(index)}>進行中</button>
+                      <button onClick={() => todoInProgress(index)}>
+                        進行中
+                      </button>
                       <button onClick={() => completeTodo(index)}>完了</button>
-                      <button onClick={() => todoDeleteClick(index)}>削除</button>
+                      <button onClick={() => todoDeleteClick(index)}>
+                        削除
+                      </button>
                     </div>
                   </li>
                 </div>
-              )
+              );
             })}
           </ul>
         </div>
@@ -153,8 +165,12 @@ const TodoApp = () => {
                 </div>
                 <div>
                   <button onClick={() => todoEditClick(index)}>✏️</button>
-                  <button onClick={() => sendCompleteTodo(index)}>完了へ</button>
-                  <button onClick={() => todoDeleteInprogress(index)}>削除</button>
+                  <button onClick={() => sendCompleteTodo(index)}>
+                    完了へ
+                  </button>
+                  <button onClick={() => todoDeleteInprogress(index)}>
+                    削除
+                  </button>
                 </div>
               </li>
             ))}
@@ -172,8 +188,12 @@ const TodoApp = () => {
                 </div>
                 <div>
                   <button onClick={() => todoEditClick(index)}>✏️</button>
-                  <button onClick={() => sendTodoInProgress(index)}>進行中へ</button>
-                  <button onClick={() => todoDeleteComplete(index)}>削除</button>
+                  <button onClick={() => sendTodoInProgress(index)}>
+                    進行中へ
+                  </button>
+                  <button onClick={() => todoDeleteComplete(index)}>
+                    削除
+                  </button>
                 </div>
               </li>
             ))}
@@ -181,7 +201,7 @@ const TodoApp = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default TodoApp
+export default TodoApp;
