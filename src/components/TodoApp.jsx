@@ -10,7 +10,7 @@ const TodoApp = () => {
   // ↓idのstate
   const [id, setId] = useState(1);
   // ↓編集のstate
-  // const [todoEdit, setTodoEdit] = useState('')
+  const [todoEdit, setTodoEdit] = useState("")
   // ↓進行中のstate
   const [inProgress, setInProgress] = useState([]);
   // ↓完了のstate
@@ -42,9 +42,13 @@ const TodoApp = () => {
   };
 
   // 編集ボタン機能
-  // 既存のtodoリストを取り除く→splice
+  // 既存のtodoリストを取り除く
   // 取り除いた後は空配列にする
-  const todoEditClick = () => {};
+  const todoEditClick = (id) => {
+    const oldTodos = [...inputTodoList];
+    oldTodos.filter((id) => '')
+    
+  };
 
   // 進行中ボタン機能
   const todoInProgress = (index) => {
