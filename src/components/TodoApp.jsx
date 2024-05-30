@@ -43,7 +43,7 @@ const TodoApp = () => {
 
   // 編集ボタン機能
   // 既存のtodoリストを取り除く
-  // 取り除いた後は空配列にする
+  // 取り除いた後は空配列にする?
   const todoEditClick = (id) => {
     const oldTodos = [...inputTodoList];
     oldTodos.filter((id) => '')
