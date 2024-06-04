@@ -8,9 +8,9 @@ const TodoApp = () => {
   // ↓詳細のstate
   const [inputTodoDetail, setInputTodoDetail] = useState("");
   // ↓idのstate
-  const [id, setId] = useState(1);
+  const [id, setId] = useState(0);
   // ↓編集のstate
-  const [todoEdit, setTodoEdit] = useState("")
+  // const [todoEdit, setTodoEdit] = useState("")
   // ↓進行中のstate
   const [inProgress, setInProgress] = useState([]);
   // ↓完了のstate

@@ -7,9 +7,8 @@ const App = () => {
       <div>
         <TodoApp></TodoApp>
       </div>
-      
     </>
   )
 }
 
-export default App
+export default App;
