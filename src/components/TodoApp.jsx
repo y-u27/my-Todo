@@ -45,7 +45,7 @@ const TodoApp = () => {
   // 既存のtodoリストを取り除く
   // 取り除いた後は空配列にする?
   const todoEditClick = (id) => {
-    setTodoOpenEdit(!todoOpenEdit);
+    setTodoOpenEdit(!todoOpenEdit[id]);
   };
 
   // 進行中ボタン機能
@@ -138,7 +138,7 @@ const TodoApp = () => {
                       <div>{element.detail}</div>
                     </div>
                     <div>
-                      <button onClick={() => todoEditClick(todoOpenEdit ? <input /> : null)}>✏️</button>
+                      <button onClick={() => todoEditClick(id)}>✏️</button>
                       <button onClick={() => todoInProgress(index)}>
                         進行中
                       </button>
