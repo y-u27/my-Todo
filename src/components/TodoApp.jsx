@@ -138,7 +138,7 @@ const TodoApp = () => {
                       <div>{element.detail}</div>
                     </div>
                     <div>
-                      <button onClick={() => todoEditClick(id)}>✏️</button>
+                      <button onClick={() => todoEditClick(todoOpenEdit ? <input /> : null)}>✏️</button>
                       <button onClick={() => todoInProgress(index)}>
                         進行中
                       </button>
