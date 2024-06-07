@@ -44,9 +44,9 @@ const TodoApp = () => {
   // 編集ボタン機能
   // 既存のtodoリストを取り除く
   // 取り除いた後は空配列にする?
-  const todoEditClick = (id) => {
-    setTodoOpenEdit(!todoOpenEdit[id]);
-  };
+  // const todoEditClick = (id) => {
+  //   setTodoOpenEdit(!todoOpenEdit[id]);
+  // };
 
   // 進行中ボタン機能
   const todoInProgress = (index) => {
@@ -138,7 +138,13 @@ const TodoApp = () => {
                       <div>{element.detail}</div>
                     </div>
                     <div>
-                      <button onClick={() => todoEditClick(todoOpenEdit ? <input /> : null)}>✏️</button>
+                      <button
+                        onClick={() =>
+                          setTodoOpenEdit(todoOpenEdit ? <input /> : null)
+                        }
+                      >
+                        ✏️
+                      </button>
                       <button onClick={() => todoInProgress(index)}>
                         進行中
                       </button>
@@ -166,7 +172,13 @@ const TodoApp = () => {
                   <div>{task.detail}</div>
                 </div>
                 <div>
-                  <button onClick={() => todoEditClick(index)}>✏️</button>
+                  <button
+                    onClick={() =>
+                      setTodoOpenEdit(todoOpenEdit ? <input /> : null)
+                    }
+                  >
+                    ✏️
+                  </button>
                   <button onClick={() => sendCompleteTodo(index)}>
                     完了へ
                   </button>
@@ -189,7 +201,13 @@ const TodoApp = () => {
                   <div>{task.detail}</div>
                 </div>
                 <div>
-                  <button onClick={() => todoEditClick(index)}>✏️</button>
+                  <button
+                    onClick={() =>
+                      setTodoOpenEdit(todoOpenEdit ? <input /> : null)
+                    }
+                  >
+                    ✏️
+                  </button>
                   <button onClick={() => sendTodoInProgress(index)}>
                     進行中へ
                   </button>
