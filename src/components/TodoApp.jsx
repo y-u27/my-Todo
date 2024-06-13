@@ -140,7 +140,15 @@ const TodoApp = () => {
                     <div>
                       <button
                         onClick={() =>
-                          setTodoOpenEdit(todoOpenEdit ? <input /> : null)
+                          setTodoOpenEdit(
+                            todoOpenEdit ? (
+                              <input
+                                type="text"
+                                value={inputTodoList}
+                                onChange={handleOnChange}
+                              />
+                            ) : null
+                          )
                         }
                       >
                         ✏️
