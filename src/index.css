@@ -1,11 +1,14 @@
 body {
-  background-color: #F0FFFF;
+  background-color: #f0ffff;
+  margin: 0;
 }
 
 .title {
   font-family: Meiryo;
   background-color: skyblue;
   text-align: center;
+  margin: 0px;
+  padding: 0px;
 }
 
 .input-area {
@@ -20,13 +23,13 @@ body {
   display: flex;
   position: absolute;
   top: 14px;
-  left: 23%;
+  left: 29%;
 }
 
 .input-area .todoDetail {
   display: flex;
   position: fixed;
-  left: 25%;
+  left: 29%;
   bottom: 73%;
 }
 
@@ -41,24 +44,25 @@ body {
 
 input {
   margin: 10px;
-  width: 500px;
+  width: 300px;
   height: 30px;
   border-radius: 10px;
+  border: 3px solid #6495ed;
 }
 
 button {
   width: 80px;
   height: 35px;
-  background-color: #CCFFFF;
+  background-color: #ccffff;
   border-radius: 10px;
-  border: 1px solid #00FFFF;
+  border: 1px solid #00ffff;
   margin: 5px;
   box-shadow: 10px 10px 15px -15px;
 }
 
 button:hover {
-  background-color: #77F9C3;
-  color: #FF9872;
+  background-color: #77f9c3;
+  color: #ff9872;
   cursor: pointer;
 }
 
@@ -80,7 +84,7 @@ li {
 .in-progress {
   width: 30%;
   min-height: 200px;
-  background-color: #FFFF99;
+  background-color: #ffff99;
   border: none;
   border-radius: 15px;
   margin-right: 10px;
@@ -94,7 +98,7 @@ li {
 .complete {
   width: 30%;
   min-height: 200px;
-  background-color: #FFAD90;
+  background-color: #ffad90;
   border: none;
   border-radius: 15px;
   box-shadow: 10px 10px 15px -10px;

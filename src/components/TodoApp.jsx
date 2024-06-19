@@ -10,7 +10,9 @@ const TodoApp = () => {
   // ↓idのstate
   const [id, setId] = useState(0);
   // ↓編集のstate
-  const [todoOpenEdit, setTodoOpenEdit] = useState(false);
+  const [todoOpenEdit, setTodoOpenEdit] = useState(null);
+  const [editTitle, setEditTitle] = useState("");
+  const [editDetail, setEditDetail] = useState("");
   // ↓進行中のstate
   const [inProgress, setInProgress] = useState([]);
   // ↓完了のstate
@@ -42,11 +44,16 @@ const TodoApp = () => {
   };
 
   // 編集ボタン機能
-  // 既存のtodoリストを取り除く
-  // 取り除いた後は空配列にする?
-  // const todoEditClick = (id) => {
-  //   setTodoOpenEdit(!todoOpenEdit[id]);
-  // };
+  const editButton = (todo) => {
+    setTodoOpenEdit(todo.id);
+    setEditTitle(todo.title);
+    setEditDetail(todo.detail);
+  };
+
+  // 編集を保存する機能
+  const updateEditButton = () => {
+
+  };
 
   // 進行中ボタン機能
   const todoInProgress = (index) => {
@@ -113,18 +120,20 @@ const TodoApp = () => {
         <h1 className="title">YourTodo</h1>
       </div>
       <div className="input-area">
-        <div className="todoTitle">Todoのタイトル:</div>
-        <input
-          placeholder="例) 読書など"
-          value={inputTodoList}
-          onChange={handleOnChange}
-        />
-        <div className="todoDetail">Todoの詳細:</div>
-        <input
-          placeholder="例) 本のタイトルなど"
-          value={inputTodoDetail}
-          onChange={handleDetail}
-        />
+        <div>
+          <input
+            placeholder="Todoのタイトル（例:読書 など）"
+            value={inputTodoList}
+            onChange={handleOnChange}
+          />
+        </div>
+        <div>
+          <input
+            placeholder="Todoの詳細（例:5ページ読む など）"
+            value={inputTodoDetail}
+            onChange={handleDetail}
+          />
+        </div>
         <button onClick={todoAddClick}>Add</button>
         <div>
           <ul>
@@ -134,25 +143,31 @@ const TodoApp = () => {
                   <li className="todoTitles">
                     <div className="todoElement">
                       <div>{element.id}</div>
-                      <div>{element.title}</div>
-                      <div>{element.detail}</div>
+                      {todoOpenEdit === element.id ? (
+                        <>
+                          <input
+                            value={editTitle}
+                            onChange={(e) => setEditTitle(e.target.value)}
+                          />
+                          <input
+                            value={editDetail}
+                            onChange={(e) => setEditDetail(e.target.value)}
+                          />
+                          <button onClick={() => updateEditButton(element.id)}>
+                            上書き
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <div>{element.title}</div>
+                          <div>{element.detail}</div>
+                        </>
+                      )}
                     </div>
                     <div>
-                      <button
-                        onClick={() =>
-                          setTodoOpenEdit(
-                            todoOpenEdit ? (
-                              <input
-                                type="text"
-                                value={inputTodoList}
-                                onChange={handleOnChange}
-                              />
-                            ) : null
-                          )
-                        }
-                      >
-                        ✏️
-                      </button>
+                      {todoOpenEdit === element.id ? null : (
+                        <button onClick={() => todoAddClick(element)}>追加</button>
+                      )}
                       <button onClick={() => todoInProgress(index)}>
                         進行中
                       </button>
@@ -180,13 +195,7 @@ const TodoApp = () => {
                   <div>{task.detail}</div>
                 </div>
                 <div>
-                  <button
-                    onClick={() =>
-                      setTodoOpenEdit(todoOpenEdit ? <input /> : null)
-                    }
-                  >
-                    ✏️
-                  </button>
+                  <button onClick={() => todoAddClick(task)}>追加</button>
                   <button onClick={() => sendCompleteTodo(index)}>
                     完了へ
                   </button>
@@ -209,13 +218,7 @@ const TodoApp = () => {
                   <div>{task.detail}</div>
                 </div>
                 <div>
-                  <button
-                    onClick={() =>
-                      setTodoOpenEdit(todoOpenEdit ? <input /> : null)
-                    }
-                  >
-                    ✏️
-                  </button>
+                  <button onClick={() => editButton(task)}>追加</button>
                   <button onClick={() => sendTodoInProgress(index)}>
                     進行中へ
                   </button>
