@@ -52,7 +52,17 @@ const TodoApp = () => {
 
   // 編集を保存する機能
   const updateEditButton = () => {
-
+    const updatedTitles = titles.map((todo) =>
+      todo.id === todoOpenEdit
+        ? { ...todo, title: editTitle, detail: editDetail }
+        : todo
+    );
+    setTitles(updatedTitles);
+    // ↓編集できるか判定？
+    setTodoOpenEdit(null);
+    // ↓更新関数を空文字に設定
+    setEditTitle("");
+    setEditDetail("");
   };
 
   // 進行中ボタン機能
@@ -143,8 +153,12 @@ const TodoApp = () => {
                   <li className="todoTitles">
                     <div className="todoElement">
                       <div>{element.id}</div>
+                      <div>{element.title}</div>
+                      <div>{element.detail}</div>
+                    </div>
+                    <div>
                       {todoOpenEdit === element.id ? (
-                        <>
+                        <div>
                           <input
                             value={editTitle}
                             onChange={(e) => setEditTitle(e.target.value)}
@@ -153,28 +167,27 @@ const TodoApp = () => {
                             value={editDetail}
                             onChange={(e) => setEditDetail(e.target.value)}
                           />
-                          <button onClick={() => updateEditButton(element.id)}>
-                            上書き
+                          <button onClick={updateEditButton}>保存</button>
+                          <button onClick={() => setTodoOpenEdit(null)}>
+                            キャンセル
                           </button>
-                        </>
+                        </div>
                       ) : (
-                        <>
-                          <div>{element.title}</div>
-                          <div>{element.detail}</div>
-                        </>
+                        <div>
+                          <button onClick={() => editButton(element)}>
+                            編集
+                          </button>
+                          <button onClick={() => todoInProgress(index)}>
+                            進行中
+                          </button>
+                          <button onClick={() => completeTodo(index)}>
+                            完了
+                          </button>
+                          <button onClick={() => todoDeleteClick(index)}>
+                            削除
+                          </button>
+                        </div>
                       )}
-                    </div>
-                    <div>
-                      {todoOpenEdit === element.id ? null : (
-                        <button onClick={() => todoAddClick(element)}>追加</button>
-                      )}
-                      <button onClick={() => todoInProgress(index)}>
-                        進行中
-                      </button>
-                      <button onClick={() => completeTodo(index)}>完了</button>
-                      <button onClick={() => todoDeleteClick(index)}>
-                        削除
-                      </button>
                     </div>
                   </li>
                 </div>
@@ -189,13 +202,12 @@ const TodoApp = () => {
           <ul>
             {inProgress.map((task, index) => (
               <li key={index}>
-                <div>
+                <div className="todoElement">
                   <div>{task.id}</div>
                   <div>{task.title}</div>
                   <div>{task.detail}</div>
                 </div>
                 <div>
-                  <button onClick={() => todoAddClick(task)}>追加</button>
                   <button onClick={() => sendCompleteTodo(index)}>
                     完了へ
                   </button>
@@ -212,13 +224,12 @@ const TodoApp = () => {
           <ul>
             {complete.map((task, index) => (
               <li key={index}>
-                <div className="completeTodo">
+                <div className="todoElement">
                   <div>{task.id}</div>
                   <div>{task.title}</div>
                   <div>{task.detail}</div>
                 </div>
                 <div>
-                  <button onClick={() => editButton(task)}>追加</button>
                   <button onClick={() => sendTodoInProgress(index)}>
                     進行中へ
                   </button>
