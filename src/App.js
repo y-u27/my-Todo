@@ -5,6 +5,7 @@ const App = () => {
   return (
     <>
       <div>
+        {/* REVIEW: TodoAppは<TodoApp />と書けると良いですね！ */}
         <TodoApp></TodoApp>
       </div>
     </>
