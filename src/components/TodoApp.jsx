@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 
+// NICE: コメントが丁寧でわかりやすいです！
+// NICE: 命名が端的でわかりやすいです！
+
 const TodoApp = () => {
+  // REVIEW: このtitlesはtodoの一覧を保持するstateなので、todosという名前の方が適切かもしれないですね😊
   // ↓タイトルのstate
   const [titles, setTitles] = useState([]);
+  // REVIEW: このinputTodoListはtodoのタイトルを保持するstateなので、詳細のstateに合わせてinputTodoTitleという名前の方が適切かもしれないですね😊
   // ↓リストのstate
   const [inputTodoList, setInputTodoList] = useState("");
   // ↓詳細のstate
   const [inputTodoDetail, setInputTodoDetail] = useState("");
   // ↓idのstate
   const [id, setId] = useState(0);
+  // REVIEW: todoOpenEditはidが入るのでeditIdという名前の方が適切かもしれないですね😊
+  // REVIEW: idは数字なので、初期値はnullよりも0の方が適切かもしれないですね😊
   // ↓編集のstate
   const [todoOpenEdit, setTodoOpenEdit] = useState(null);
   const [editTitle, setEditTitle] = useState("");
@@ -30,6 +37,8 @@ const TodoApp = () => {
 
   // 追加ボタン機能
   const todoAddClick = () => {
+    // NICE: ここで空文字の場合の処理を追加しているのがGoodです！
+    // REVIEW: 詳細も入力してほしい情報なので、詳細が空文字の場合も処理を追加すると良いかもしれませんね😊
     if (inputTodoList === "") return;
     // 新しいTodoオブジェクトを作成して配列に追加
     const newTodo = {
@@ -38,8 +47,10 @@ const TodoApp = () => {
       detail: inputTodoDetail,
     };
     setTitles([...titles, newTodo]);
+    // NICE: 入力フォームをクリアする処理があるのがGoodです！
     setInputTodoList("");
     setInputTodoDetail("");
+    // NICE: idの更新処理があって良いですね！
     setId(id + 1);
   };
 
